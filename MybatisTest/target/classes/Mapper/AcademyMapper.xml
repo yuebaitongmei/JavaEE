@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper为映射的根节点-->
+<mapper namespace="POJO.Academy">
+
+<!--    通过学院ID查找学院-->
+    <select id="findAmyByID" parameterType="int"
+            resultType="POJO.Academy">
+        select * from s_academy where id = #{id}
+    </select>
+
+<!--    通过学院名查找学院-->
+    <select id="findAmyByName" parameterType="int"
+            resultType="POJO.Academy">
+        select * from s_academy where academyname like concat('%',#{academyname},'%')
+    </select>
+
+<!--    添加学院信息-->
+    <insert id="addAmyInfo" parameterType="POJO.Academy">
+        insert into s_academy(id,academyname) values (#{id}, #{AcademyName})
+    </insert>
+
+<!--    修改学院信息-->
+    <update id="changeAmyInfo" parameterType="POJO.Academy">
+        update s_academy set academyname=#{AcademyName} where id=#{id}
+    </update>
+    
+<!--    根据ID删除学院信息-->
+    <delete id="deleteAmyInfoByID" parameterType="int">
+        delete  from  s_academy  where id=#{id}
+    </delete>
+<!--    根据名称删除学员信息-->
+    <delete id="deleteAmyInfoByName" parameterType="String">
+        delete  from  s_academy  where academyname=#{AcademyName}
+    </delete>
+
+</mapper>

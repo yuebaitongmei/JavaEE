@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper为映射的根节点-->
+
+<mapper namespace="POJO.Course">
+    <!--    通过ID查找课程-->
+    <select id="findCourByID" parameterType="int"
+            resultType="POJO.Course">
+        select * from s_course where id = #{id}
+    </select>
+    <!--    通过学院ID查找课程-->
+    <select id="findCourByAID" parameterType="int"
+            resultType="POJO.Course">
+        select * from s_course where aid = #{aid}
+    </select>
+    <!--    通过名称查找课程-->
+    <select id="findCourByName" parameterType="String"
+            resultType="POJO.Course">
+        select * from s_course where name like concat('%',#{name},'%')
+    </select>
+
+    <!--    添加课程信息-->
+    <insert id="addCourInfo" parameterType="POJO.Course">
+        insert into s_course(id,name,hours,aid) values (#{id}, #{name},#{hours},#{aid})
+    </insert>
+
+    <!--    修改课程信息-->
+    <update id="changeCourInfo" parameterType="POJO.Course">
+        update s_course set name=#{name}, hours=#{hours}, aid=#{aid} where id=#{id}
+    </update>
+
+    <!--    根据名称删除课程信息-->
+    <delete id="deleteCourInfoByName" parameterType="String">
+        delete  from  s_course  where name=#{AcademyName}
+    </delete>
+
+
+</mapper>
