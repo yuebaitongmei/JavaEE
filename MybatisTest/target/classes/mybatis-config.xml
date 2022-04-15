@@ -21,5 +21,7 @@
     <mappers>
         <mapper resource="Mapper/AcademyMapper.xml"/>
         <mapper resource="Mapper/CourseMapper.xml"/>
+        <mapper class="Dao.AcademyMapper"/>
+        <mapper class="Dao.CourseMapper"/>
     </mappers>
 </configuration>

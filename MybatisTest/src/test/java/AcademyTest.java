@@ -17,7 +17,7 @@ import java.util.List;
 public class AcademyTest {
 
     /**
-    *@Description:通过ID查找学院
+    *@Description:通过ID查找学院（基于xml和基于注解）
     *@Author:YueBai
     *@Date:2022/4/11 22:52
     *@Version 1.0
@@ -26,13 +26,14 @@ public class AcademyTest {
     @Test
     public void findAmyByID(){
         SqlSession session=MyBatisUtils.getSession();
-        Academy academy=session.selectOne("findAmyByID",1);
+        Academy academy=session.selectOne("findAmyByID",1);  //xml
+//        Academy academy=session.selectOne("findAmyByID02",1);    //注解
         System.out.println("学院名称:"+academy.getAcademyName());
         session.close();
     }
 
     /**
-    *@Description:通过名称查找学院
+    *@Description:通过名称查找学院（基于xml和基于注解）
     *@Author:YueBai
     *@Date:2022/4/11 22:52
     *@Version 1.0
@@ -41,14 +42,15 @@ public class AcademyTest {
     @Test
     public void findAmyByName(){
         SqlSession session=MyBatisUtils.getSession();
-        List<Academy> academys=session.selectList("findAmyByName","计算机");
+        List<Academy> academys=session.selectList("findAmyByName","计算机");   //xml
+//      List<Academy> academys=session.selectList("findAmyByName02","计算机");       //注解
         for (Academy academy:academys)
             System.out.println("学院ID:"+academy.getId()+"学院名称:"+academy.getAcademyName());
         session.close();
     }
 
     /**
-    *@Description:添加学院信息
+    *@Description:添加学院信息（基于xml和基于注解）
     *@Author:YueBai
     *@Date:2022/4/11 22:53
     *@Version 1.0
@@ -58,7 +60,8 @@ public class AcademyTest {
     public void addAmyInfo(){
         SqlSession session=MyBatisUtils.getSession();
         Academy academy=new Academy(3,"商学院");
-        int res=session.insert("addAmyInfo",academy);
+        int res=session.insert("addAmyInfo",academy);  //xml
+//        int res=session.insert("addAmyInfo02",academy);   //注解
         session.commit();
         if(res==1)
             System.out.println("商学院信息添加成功！");
@@ -68,7 +71,7 @@ public class AcademyTest {
     }
 
     /**
-    *@Description:修改学院信息
+    *@Description:修改学院信息（基于xml和基于注解）
     *@Author:YueBai
     *@Date:2022/4/11 22:59
     *@Version 1.0
@@ -78,7 +81,8 @@ public class AcademyTest {
     public void changeAmyInfo(){
         SqlSession session=MyBatisUtils.getSession();
         Academy academy=new Academy(1,"计算机科学与工程学院");
-        int res=session.update("changeAmyInfo",academy);
+        int res=session.update("changeAmyInfo",academy);  //xml
+//        int res=session.update("changeAmyInfo02",academy);   //注解
         session.commit();
         if(res==1)
             System.out.println("计算机学院信息修改成功！");
@@ -88,7 +92,7 @@ public class AcademyTest {
     }
 
     /**
-    *@Description:根据ID删除学院信息
+    *@Description:根据ID删除学院信息（基于xml和基于注解）
     *@Author:YueBai
     *@Date:2022/4/11 23:37
     *@Version 1.0
@@ -97,7 +101,8 @@ public class AcademyTest {
     @Test
     public void deleteAmyInfoByID(){
         SqlSession session=MyBatisUtils.getSession();
-        int res=session.delete("deleteAmyInfoByID",1);
+        int res=session.delete("deleteAmyInfoByID",1);  //xml
+//        int res=session.delete("deleteAmyInfoByID02",1);    //注解
         session.commit();
         if(res==1)
             System.out.println("计算机学院信息删除成功！");
@@ -107,7 +112,7 @@ public class AcademyTest {
     }
 
     /**
-    *@Description:根据名称删除学院信息
+    *@Description:根据名称删除学院信息（基于xml和基于注解）
     *@Author:YueBai
     *@Date:2022/4/11 23:39
     *@Version 1.0
@@ -116,7 +121,8 @@ public class AcademyTest {
     @Test
     public void deleteAmyInfoByName(){
         SqlSession session=MyBatisUtils.getSession();
-        int res=session.delete("deleteAmyInfoByName","计算机学院");
+        int res=session.delete("deleteAmyInfoByName","计算机学院");  //xml
+//        int res=session.delete("deleteAmyInfoByName02","计算机学院");  //注解
         session.commit();
         if(res==1)
             System.out.println("计算机学院信息删除成功！");

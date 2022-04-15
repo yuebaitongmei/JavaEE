@@ -12,7 +12,7 @@
     </select>
 
 <!--    通过学院名查找学院-->
-    <select id="findAmyByName" parameterType="int"
+    <select id="findAmyByName" parameterType="String"
             resultType="POJO.Academy">
         select * from s_academy where academyname like concat('%',#{academyname},'%')
     </select>
@@ -31,7 +31,7 @@
     <delete id="deleteAmyInfoByID" parameterType="int">
         delete  from  s_academy  where id=#{id}
     </delete>
-<!--    根据名称删除学员信息-->
+<!--    根据名称删除学院信息-->
     <delete id="deleteAmyInfoByName" parameterType="String">
         delete  from  s_academy  where academyname=#{AcademyName}
     </delete>
