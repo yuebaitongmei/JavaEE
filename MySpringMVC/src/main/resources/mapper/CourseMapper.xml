@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper为映射的根节点-->
+
+<mapper namespace="com.yuebai.dao.CourseMapper">
+
+    <resultMap id="courseAndAmyNameMap" type="java.util.Map">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="hours" column="hours"/>
+        <result property="aid" column="aid"/>
+        <result property="academyname" column="academyname"/>
+    </resultMap>
+
+    <!--    通过ID查找课程信息及其开设学院名称-->
+    <select id="findCourAndAmyNameByID" parameterType="Integer"
+            resultType="java.util.Map"
+            resultMap="courseAndAmyNameMap">
+         select cour.*,amy.academyname from s_course cour left join s_academy amy on cour.aid=amy.id where cour.id=#{id}  order by cour.aid
+    </select>
+    <!--    通过名称查找课程信息及其开设学院名称-->
+    <select id="findCourAndAmyNameByName" parameterType="String"
+            resultType="java.util.Map"
+            resultMap="courseAndAmyNameMap">
+         select cour.*,amy.academyname from s_course cour left join s_academy amy on cour.aid=amy.id where cour.name like concat('%',#{name},'%') order by cour.aid
+    </select>
+    <!--    所有课程信息及其开设学院名称-->
+    <select id="allCourAndAmyName"
+            resultType="java.util.Map"
+            resultMap="courseAndAmyNameMap">
+         select cour.*,amy.academyname from s_course cour left join s_academy amy on cour.aid=amy.id order by cour.aid
+    </select>
+
+
+    <!--    通过ID查找课程-->
+    <select id="findCourByID" parameterType="Integer"
+            resultType="com.yuebai.domain.Course">
+        select * from s_course where id = #{id} order by aid
+    </select>
+    <!--    通过学院ID查找课程-->
+    <select id="findCourByAID" parameterType="Integer"
+            resultType="com.yuebai.domain.Course">
+        select * from s_course where aid = #{aid} order by aid
+    </select>
+    <!--    通过名称查找课程-->
+    <select id="findCourByName" parameterType="String"
+            resultType="com.yuebai.domain.Course">
+        select * from s_course where name like concat('%',#{name},'%') order by aid
+    </select>
+
+    <!--    添加课程信息-->
+    <insert id="addCourInfo" parameterType="com.yuebai.domain.Course">
+        insert into s_course(name,hours,aid,imgpath) values (#{name},#{hours},#{aid},#{imgpath})
+    </insert>
+
+    <!--    修改课程信息-->
+    <update id="changeCourInfo" parameterType="com.yuebai.domain.Course">
+        update s_course set name=#{name}, hours=#{hours}, aid=#{aid}, imgpath=#{imgpath} where id=#{id}
+    </update>
+
+    <!--    根据ID删除课程信息-->
+    <delete id="deleteCourInfoByID" parameterType="Integer">
+        delete  from  s_course  where id=#{id}
+    </delete>
+
+
+</mapper>
