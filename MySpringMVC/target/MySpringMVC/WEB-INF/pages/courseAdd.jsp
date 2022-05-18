@@ -66,19 +66,14 @@
         formData.append("name",document.getElementById("courseName").value);
         formData.append("hours",document.getElementById("courseHours").value);
         formData.append("aid",document.getElementById("academyID").value);
-        formData.append("courPic",document.getElementById("courPic").files[0]);
+        if(document.getElementById("courPic").files[0]!=null)
+            formData.append("courPic",document.getElementById("courPic").files[0]);
         $.ajax({
             url: "${pageContext.request.contextPath}/course/AddCourInfo",
             type: "POST",
             processData: false,
             contentType: false,
             data: formData,
-            //     {
-            //         "name": document.getElementById("courseName").value,
-            //         "hours": document.getElementById("courseHours").value,
-            //         "aid": document.getElementById("academyID").value,
-            //         "courPic": document.getElementById("courPic").files[0],
-            // },
             success: function (data) {
                 if (data == "success") {
                     alert("添加成功！");

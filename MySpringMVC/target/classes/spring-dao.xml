@@ -26,15 +26,16 @@
         <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
     </bean>
 
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding" value="UTF-8"/>
-        <property name="maxInMemorySize" value="10485760"/>
-    </bean>
-
     <!--    扫描Dao包，创建动态代理对象-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--        指定要扫描的Dao包-->
         <property name="basePackage" value="com.yuebai.dao"/>
+    </bean>
+
+    <!--    配置多部件解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxInMemorySize" value="10485760"/>
     </bean>
 
 </beans>

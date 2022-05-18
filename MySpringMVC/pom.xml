@@ -74,14 +74,12 @@
       <version>5.3.5</version>
     </dependency>
 
-
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.22</version>
       <scope>runtime</scope>
     </dependency>
-
 
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -100,7 +98,6 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-
 
     <dependency>
       <groupId>junit</groupId>
@@ -129,13 +126,13 @@
 
   <build>
     <finalName>MySpringMVC</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
@@ -184,4 +181,5 @@
       </resource>
     </resources>
   </build>
+
 </project>

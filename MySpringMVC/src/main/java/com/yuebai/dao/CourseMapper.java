@@ -35,22 +35,23 @@ public interface CourseMapper {
     /**
      *基于xml
      */
+    //通过课程ID查询课程及其所属学院名称
     List<Map<String,Object>> findCourAndAmyNameByID(Integer id);
-
+    //通过课程名称查询课程及其所属学院名称
     List<Map<String,Object>> findCourAndAmyNameByName(String name);
-
+    //获取所有课程及其所属学院信息
     List<Map<String,Object>> allCourAndAmyName();
-
+    //通过课程ID获取课程
     Course findCourByID(Integer id);
-
+    //通过学院ID获取课程
     List<Course> findCourByAID(Integer aid);
-
+    //通过课程名称获取课程
     List<Course> findCourByName(String name);
-
+    //添加课程信息
     void addCourInfo(Course course);
-
+    //修改课程信息
     void changeCourInfo(Course course);
-
+    //通过课程ID删除课程信息
     void deleteCourInfoByID(Integer ID);
 }
 

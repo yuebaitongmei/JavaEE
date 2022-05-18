@@ -27,13 +27,19 @@
 
 <div class="container">
     <div>
-        <input id="CourIDorName" name="CourIDorName" type="text" placeholder="输入课程名称或ID" style="width: 710px">
+        <input id="CourIDorName" name="CourIDorName" type="text"
+               placeholder="输入课程名称或ID" style="width: 710px">
         <a href="javascript:;"
-           onclick="if(document.getElementById('CourIDorName').value!='') location ='${pageContext.request.contextPath}/course/findCourAndAmyNameByID?courseID='+document.getElementById('CourIDorName').value;
+           onclick="if(document.getElementById('CourIDorName').value!='')
+               location ='${pageContext.request.contextPath}/course/findCourAndAmyNameByID?courseID='
+                   +document.getElementById('CourIDorName').value;
                    else alert('课程ID不能为空');" class="btn btn-success">ID查询</a>
         <a href="javascript:;"
-           onclick="if(document.getElementById('CourIDorName').value!='') location ='${pageContext.request.contextPath}/course/findCourAndAmyNameByName?courseName='+document.getElementById('CourIDorName').value;
-                   else location ='${pageContext.request.contextPath}/course/list'; " class="btn btn-success">名称查询</a>
+           onclick="if(document.getElementById('CourIDorName').value!='')
+               location ='${pageContext.request.contextPath}/course/findCourAndAmyNameByName?courseName='
+                   +document.getElementById('CourIDorName').value;
+                   else location ='${pageContext.request.contextPath}/course/list'; "
+           class="btn btn-success">名称查询</a>
         <a href="${pageContext.request.contextPath}/course/toAdd" class="btn btn-info">添加课程</a>
     </div>
     <table class="table">
@@ -50,7 +56,6 @@
         <c:forEach var="course" items="${requestScope.get('courseList')}">
             <tr>
                 <td><img src="${course.imgpath}" style="width: 100px;height: 100px; "></td>
-
                 <td style=" vertical-align: middle">${course.name}</td>
                 <td style="vertical-align: middle">${course.hours}</td>
                 <td style="vertical-align: middle">${course.academyname}</td>

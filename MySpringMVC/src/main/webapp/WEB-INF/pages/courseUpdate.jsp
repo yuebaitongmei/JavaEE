@@ -72,20 +72,15 @@
         formData.append("name",document.getElementById("courseName").value);
         formData.append("hours",document.getElementById("courseHours").value);
         formData.append("aid",document.getElementById("academyID").value);
-        formData.append("courPic",document.getElementById("courPicToUpdate").files[0]);
         formData.append("oldImgPath","${course.imgpath}");
+        if (document.getElementById("courPicToUpdate").files[0]!=null)
+            formData.append("courPic",document.getElementById("courPicToUpdate").files[0]);
         $.ajax({
             url: "${pageContext.request.contextPath}/course/UpdateCourInfo",
             type: "POST",
             processData: false,
             contentType: false,
             data: formData,
-            <%--    {--%>
-            <%--    "id": "${course.getId()}",--%>
-            <%--    "name": document.getElementById("courseName").value,--%>
-            <%--    "hours": document.getElementById("courseHours").value,--%>
-            <%--    "aid": document.getElementById("academyID").value--%>
-            <%--},--%>
             success: function (data) {
                 if (data == "success")
                 {
@@ -98,7 +93,7 @@
                     alert("课程名重复！");
             },
             error: function () {
-                alert("添加失败！");
+                alert("修改失败！");
             }
         });
     }

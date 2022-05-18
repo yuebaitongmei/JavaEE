@@ -67,7 +67,6 @@ public class CourseController {
             coursesAndAmyName.add(course);
             System.out.println(course.get("name"));
         }
-
         modelAndView.setViewName("course");
         modelAndView.addObject("courseList",coursesAndAmyName);
         return modelAndView;
@@ -100,7 +99,7 @@ public class CourseController {
     }
     @ResponseBody
     @RequestMapping("/AddCourInfo")
-    public String addCourseInfo(@RequestParam("courPic") MultipartFile courPic,String name,Integer hours,Integer aid) {
+    public String addCourseInfo(String name,Integer hours,Integer aid,MultipartFile courPic) {
         Course course=new Course();
         if(name==""||hours==null||aid==null)
             return "dataError";
@@ -124,12 +123,13 @@ public class CourseController {
     }
     @ResponseBody
     @RequestMapping("/UpdateCourInfo")
-    public String UpdateCourInfo(@RequestParam("courPic") MultipartFile courPic,@RequestParam("oldImgPath") String oldImgPath
-            ,Integer id,String name,Integer hours,Integer aid) {
+    public String UpdateCourInfo(Integer id,String name,Integer hours,Integer aid,
+                                 String oldImgPath,MultipartFile courPic) {
         //删除原图片
-        File oldimg=new File(imgPath.ABUSOLUTE_IMG_PATH+oldImgPath.substring(6,oldImgPath.length()));
-        oldimg.delete();
-
+        if(courPic!=null&&!oldImgPath.substring(6,oldImgPath.length()).equals("default.png")) {
+            File oldimg=new File(imgPath.ABUSOLUTE_IMG_PATH+oldImgPath.substring(6,oldImgPath.length()));
+            oldimg.delete();
+        }
         Course course=new Course();
         if(id==null||name==""|| hours==null||aid==null)
             return "dataError";
@@ -148,6 +148,13 @@ public class CourseController {
 
     @RequestMapping("/deleteCourByID")
     public String findCourByName(Integer courseID) {
+        Course course=courseService.findCourByID(courseID);
+        String path=course.getImgpath();
+        //删除其图片
+        if(!path.substring(8,path.length()).equals("default.png")) {
+            File img=new File(imgPath.ABUSOLUTE_IMG_PATH+path.substring(8,path.length()));
+            img.delete();
+        }
         courseService.deleteCourInfoByID(courseID);
         return "redirect:/course/list";
     }

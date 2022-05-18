@@ -83,7 +83,7 @@ public class CourseServiceImpl implements CourseService {
             }
         }
         else
-            course.setImgpath(imgPath.RELATIVE_IMG_PATH +"addCourPic.png");
+            course.setImgpath(imgPath.RELATIVE_IMG_PATH +"default.png");
         courseMapper.addCourInfo(course);  //基于xml
         //courseMapper.addCourInfo02(course);  //基于注解
     }
@@ -110,8 +110,6 @@ public class CourseServiceImpl implements CourseService {
                 e.printStackTrace();
             }
         }
-        else
-            course.setImgpath(imgPath.RELATIVE_IMG_PATH +"addCourPic.png");
         courseMapper.changeCourInfo(course);  //基于xml
         //courseMapper.changeCourInfo02(course);  //基于注解
     }
